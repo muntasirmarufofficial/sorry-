@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>For Lamisha ❤️</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
+body{
+    height:100vh;overflow:hidden;
+    background:linear-gradient(-45deg,#ff9a9e,#fad0c4,#fbc2eb,#a6c1ee);
+    background-size:400% 400%;
+    animation:gradientBG 12s ease infinite;
+    display:flex;justify-content:center;align-items:center;flex-direction:column;
+}
+@keyframes gradientBG{
+    0%{background-position:0% 50%;}
+    50%{background-position:100% 50%;}
+    100%{background-position:0% 50%;}
+}
+.scene{text-align:center;color:white;}
+.scene h1{font-size:3rem;text-shadow:0 0 20px rgba(255,255,255,0.8);}
+.photo{
+    margin-top:25px;width:260px;border-radius:20px;
+    box-shadow:0 15px 40px rgba(0,0,0,0.4);
+    opacity:0;transform:scale(0.8);transition:all 2s ease;
+}
+.photo.show{opacity:1;transform:scale(1);}
+.heart{
+    position:absolute;bottom:-20px;color:rgba(255,255,255,0.7);
+    animation:floatHearts 8s linear infinite;
+}
+@keyframes floatHearts{
+    0%{transform:translateY(0) scale(1);opacity:1;}
+    100%{transform:translateY(-110vh) scale(1.5);opacity:0;}
+}
+.popup{
+    position:fixed;background:white;color:#333;padding:35px;border-radius:20px;
+    box-shadow:0 20px 60px rgba(0,0,0,0.3);text-align:center;
+    width:90%;max-width:420px;opacity:0;transform:scale(0.5);
+    transition:all 0.8s ease;display:none;
+}
+.popup.show{display:block;opacity:1;transform:scale(1);}
+.popup h2{color:#ff4b6e;margin-bottom:15px;}
+.popup p{font-size:1rem;margin-bottom:20px;line-height:1.6;}
+.popup button{
+    padding:10px 18px;border:none;border-radius:25px;
+    background:linear-gradient(45deg,#ff4b6e,#ff758c);
+    color:white;font-size:1rem;cursor:pointer;margin:5px;
+    transition:transform 0.3s ease;
+}
+.popup button:hover{transform:scale(1.1);}
+</style>
+</head>
+<body>
+
+<div class="scene">
+    <h1>Lamisha… ❤️</h1>
+    <p>There’s something important I want to ask you</p>
+    <img src="lamisha.jpg" class="photo" id="memoryPhoto">
+</div>
+
+<!-- Question 1 -->
+<div class="popup" id="q1">
+    <h2>Hey 😌</h2>
+    <p>Will you again give a post or story without replying to me?</p>
+    <button onclick="invalid()">Yes 😶</button>
+    <button onclick="showPopup('q2')">No ❤️</button>
+</div>
+
+<!-- Question 2 -->
+<div class="popup" id="q2">
+    <h2>Promise? 🤞</h2>
+    <button onclick="showPopup('precious')">Yes 💖</button>
+    <button onclick="invalid()">No 🙈</button>
+</div>
+
+<!-- Precious Message -->
+<div class="popup" id="precious">
+    <h2>You Are Precious ✨</h2>
+    <p>
+        You are very precious. Don’t waste your efforts, love, and time on the wrong people.<br><br>
+        Always stay happy — your smile is the prettiest thing in this world.<br><br>
+        Don’t let anyone fade it. I am with you in every step.<br><br>
+        Don’t let anyone break your precious heart… I can’t see you unhappy anymore.
+    </p>
+    <button onclick="showPopup('apology')">Continue 💌</button>
+</div>
+
+<!-- Apology -->
+<div class="popup" id="apology">
+    <h2>I’m Really Sorry 🥺</h2>
+    <p>
+        I’m sorry if I’ve been annoying sometimes…<br>
+        I’m sorry for getting jealous…<br><br>
+        It only happens because you matter so much to me.<br><br>
+        Please don’t leave me. I love you more than I can ever explain ❤️
+    </p>
+    <button onclick="showPopup('forever')">One Last Thing 💍</button>
+</div>
+
+<!-- Forever Question -->
+<div class="popup" id="forever">
+    <h2>Will you stay with me forever? 💖</h2>
+    <button onclick="showPopup('love')">Yes ❤️</button>
+    <button onclick="invalid()">No ❌</button>
+</div>
+
+<!-- Love Question -->
+<div class="popup" id="love">
+    <h2>Do you love me? 🥺</h2>
+    <button onclick="showPopup('date')">Answer in the inbox 💌</button>
+</div>
+
+<!-- Date Question -->
+<div class="popup" id="date">
+    <h2>Let’s go on a date? 🌹</h2>
+    <button onclick="showPopup('end')">Answer in chatbox 💬</button>
+</div>
+
+<!-- End Screen -->
+<div class="popup" id="end">
+    <h2>Love You Forever ❤️</h2>
+    <p>No matter what happens, you will always be special to me 💞</p>
+</div>
+
+<script>
+function createHeart(){
+    const heart=document.createElement("div");
+    heart.classList.add("heart");
+    heart.innerHTML="❤";
+    heart.style.left=Math.random()*100+"vw";
+    heart.style.fontSize=Math.random()*20+10+"px";
+    heart.style.animationDuration=Math.random()*5+5+"s";
+    document.body.appendChild(heart);
+    setTimeout(()=>heart.remove(),8000);
+}
+setInterval(createHeart,400);
+
+setTimeout(()=>document.getElementById("memoryPhoto").classList.add("show"),2000);
+setTimeout(()=>showPopup("q1"),4500);
+
+function showPopup(id){
+    document.querySelectorAll(".popup").forEach(p=>p.classList.remove("show"));
+    const el=document.getElementById(id);
+    el.style.display="block";
+    setTimeout(()=>el.classList.add("show"),50);
+}
+
+function invalid(){
+    alert("Invalid input ❌ Try again 😌");
+}
+</script>
+
+</body>
+</html>
